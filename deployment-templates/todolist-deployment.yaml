@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-list
+  labels:
+    app: to-do-list
+spec:
+  selector:
+    matchLabels:
+      app: to-do-list
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: to-do-list
+    spec:
+      containers:
+      - name: to-do-list
+        image: ibmaccelerate/cloudnative:frontend_v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: https
+          protocol: TCP
